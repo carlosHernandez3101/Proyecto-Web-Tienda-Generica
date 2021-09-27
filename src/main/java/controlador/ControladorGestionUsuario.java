@@ -39,6 +39,7 @@ public class ControladorGestionUsuario extends HttpServlet {
 			contrasenia = request.getParameter("contrasenia");
 			Usuario user = userDTO.getUsuarioDao().existeCuentaUsuario(usuario, contrasenia);
 			if(user != null) {
+				JOptionPane.showMessageDialog(null, "El usuario se encuentra creado: " + user.getNumeroCedula());
 				response.sendRedirect("navUser.jsp");				
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");

@@ -41,6 +41,31 @@ public class UsuarioDAO {
 		}
 		return userEncontrado;
 	}
+	
+	public Usuario existeUsuario(long numeroCedula) {
+		PreparedStatement ps;
+		ResultSet rs;
+		Usuario userEncontrado = null;
+		String sql = "SELECT usu_numero_cedula, usu_nombre_completo FROM usuarios where usu_numero_cedula = ?";
+		try {
+			conexionBD.establecerConexionBD();
+			ps = conexionBD.getCnn().prepareStatement(sql);
+			ps.setLong(1, numeroCedula);			
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				long numeroCedulaC = Long.parseLong(rs.getString(1));
+				String nombreCompleto = rs.getString(2);
+				userEncontrado = new Usuario();
+				userEncontrado.setNumeroCedula(numeroCedulaC);
+				userEncontrado.setNombreCompleto(nombreCompleto);
+			}
+			conexionBD.cerrarConexionBD();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error en la conexion " + e);
+			userEncontrado = null;
+		}
+		return userEncontrado;		
+	}
 
 	public boolean agregarUsuario() {
 		PreparedStatement ps;

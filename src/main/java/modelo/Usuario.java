@@ -3,16 +3,14 @@ package modelo;
 public class Usuario {
 
 	private long numeroCedula;
-	private String nombres;
-	private String apellidos;
+	private String nombreCompleto;
 	private String correoPersonal;
 	private String usuario;
 	private String contrasenia;
 
 	public Usuario(long numeroCedula) {
 		this.numeroCedula = 0;
-		this.nombres = "";
-		this.apellidos = "";
+		this.nombreCompleto = "";
 		this.correoPersonal = "";
 		this.usuario = "";
 		this.contrasenia = "";
@@ -20,18 +18,16 @@ public class Usuario {
 
 	public Usuario() {
 		this.numeroCedula = 0;
-		this.nombres = "";
-		this.apellidos = "";
+		this.nombreCompleto = "";
 		this.correoPersonal = "";
 		this.usuario = "";
 		this.contrasenia = "";
 	}
 
-	public Usuario(long numeroCedula, String nombres, String apellidos, String correoPersonal, String usuario,
+	public Usuario(long numeroCedula, String nombreCompleto, String correoPersonal, String usuario,
 			String contrasenia) {
 		this.numeroCedula = numeroCedula;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
+		this.nombreCompleto = nombreCompleto;
 		this.correoPersonal = correoPersonal;
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
@@ -45,20 +41,12 @@ public class Usuario {
 		this.numeroCedula = numeroCedula;
 	}
 
-	public String getNombres() {
-		return nombres;
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
 
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
-	}
-
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setNombreCompleto(String nombres) {
+		this.nombreCompleto = nombres;
 	}
 
 	public String getCorreoPersonal() {

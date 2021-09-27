@@ -52,6 +52,7 @@ public class ControladorGestionUsuario extends HttpServlet {
 				response.sendRedirect("navUser.jsp");				
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
+				response.sendRedirect("index.jsp");
 			}
 		} else if(request.getParameter("btncon") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
@@ -63,8 +64,10 @@ public class ControladorGestionUsuario extends HttpServlet {
 			boolean cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 			if(userCreado && cuentaCreada) {
 				JOptionPane.showMessageDialog(null, "El usuario fue creado");
+				response.sendRedirect("navUser.jsp");
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no fue creado");
+				response.sendRedirect("navUser.jsp");
 			}
 			
 		}

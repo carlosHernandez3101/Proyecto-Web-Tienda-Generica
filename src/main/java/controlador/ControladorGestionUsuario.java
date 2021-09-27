@@ -68,8 +68,17 @@ public class ControladorGestionUsuario extends HttpServlet {
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no fue creado");
 				response.sendRedirect("navUser.jsp");
+			}			
+		} else if(request.getParameter("btnins") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			Usuario user = userDTO.getUsuarioDao().buscarUsuario(numeroCedula);
+			if(user != null) {
+				JOptionPane.showMessageDialog(null, user.toString());
+				response.sendRedirect("navUser.jsp");
+			} else {
+				JOptionPane.showMessageDialog(null, "El usuario no fue encontrado");
+				response.sendRedirect("navUser.jsp");
 			}
-			
 		}
 		
 

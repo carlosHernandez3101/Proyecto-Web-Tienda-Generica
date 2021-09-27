@@ -112,19 +112,24 @@ public class UsuarioDAO {
 		}
 	}
 
-	public Usuario buscarUsuario(String correoInstitucional) {
+	public Usuario buscarUsuario(long numeroCedula) {
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT nombres, apellidos, fecha_nacimiento, correo_institucional, correo_personal, numero_telefonico_celular, numero_telefonico_fijo, programa_academico FROM estudiantes WHERE correo_institucional = ?";
+		String sql = "SELECT * FROM usuarios WHERE usu_numero_cedula = ?";
 		Usuario userEncontrado = null;
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setString(1, correoInstitucional);
+			ps.setLong(1, numeroCedula);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				String nombres = rs.getString(1);
-
+				long numCedula = Long.parseLong(rs.getString(1));
+				String nombreCompleto = rs.getString(2);
+				String correoElectronico = rs.getString(3);
+				userEncontrado = new Usuario();
+				userEncontrado.setNumeroCedula(numeroCedula);
+				userEncontrado.setNombreCompleto(nombreCompleto);
+				userEncontrado.setCorreoPersonal(correoElectronico);
 			}
 			conexionBD.cerrarConexionBD();
 		} catch (Exception e) {
@@ -183,7 +188,7 @@ public class UsuarioDAO {
 
 	}
 
-	public String mostrarDirectorioEstudiantes() {
+	public String mostrarDirectorioUsuarios() {
 		ArrayList<Usuario> lstUsuarios = new ArrayList<Usuario>();
 		PreparedStatement ps;
 		ResultSet rs;

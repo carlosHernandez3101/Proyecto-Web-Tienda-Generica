@@ -1,0 +1,127 @@
+@charset "ISO-8859-1";
+html {
+  background-image: url(https://images.pexels.com/photos/7195232/pexels-photo-7195232.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  font-family: 'Helvetica Neue', Arial, Sans-Serif;
+  /* background-size: cover; */
+  height: 100%;
+  max-width: 100%;
+  background-color:#3498db !important;
+  background-repeat:no-repeat; 
+  background-position:center center;
+}
+body {
+    background-color: transparent !important;
+}
+
+
+.login {    
+    margin:40%;
+    background:rgba(255, 255, 255, 0.664);
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-top: 5rem;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 10px;
+    color: #34495e;
+}
+
+.form {
+    padding-top: 20px;
+}
+
+.input {
+width: 80%;
+margin-left: 10%;
+margin-bottom: 25px;
+height: 40px;
+border-radius: 5px;
+outline: 0;
+}
+      
+.input-b {
+border: 1px solid #bbb;
+padding: 0 0 0 10px;
+font-size: 14px;
+}
+    
+    
+a {
+    text-align: center;
+    font-size: 10px;
+    color: #3498db;
+    }
+    
+p{
+    padding-bottom: 10px;
+    }   
+    
+.button-login {
+    background: #1b0e96;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+    cursor: pointer;
+    transition: box-shadow .4s ease;
+    }
+
+button:hover {
+    box-shadow: 1px 1px 5px #555;  
+    }
+
+.nav {
+    margin: 1rem; 
+    padding: 3rem !important;  
+
+} 
+.nav-usuarios {
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 1rem;
+    color: white;
+}
+
+.grid-nav{
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 25% 75%;
+}
+
+.grid-nav > #side-nav{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.grid-nav > #side-nav > button{
+    background-color: transparent;
+    color: white;
+    border:none;
+    padding: .5rem;
+    font-size: 2rem;
+}
+li {
+    display: inline;
+  }
+
+  .btn-delete {
+    max-width: 80px;
+    text-align: center;
+  }
+ 
+.table-usu{
+    width: 800px;
+    margin-left: 400px !important; 
+    background-color: rgba(255, 255, 255, 0.664) !important;
+    margin-top:2rem !important;
+}

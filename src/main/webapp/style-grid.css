@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+.grid-50{
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+}
+.container-95{
+    width: 95%;
+    margin: auto;
+}
+.header{    
+    margin-top: 1.5rem;
+}
+.margin-input {
+    margin-left: 38px;
+    margin-right: 200px;
+}

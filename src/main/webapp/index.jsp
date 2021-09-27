@@ -15,7 +15,7 @@
 <title>Project</title>
 </head>
 <body>
-	<form action="ControladorGestionUsuario" method="get">
+	<form action="ControladorGestionUsuario" method="post">
 		<div>
 			<img src="./images/6f692f78790545818bb26fd1b1cbb13c.png" alt=""
 				srcset="">

@@ -41,7 +41,7 @@ public class UsuarioDAO {
 		}
 		return userEncontrado;
 	}
-	
+
 	public Usuario existeUsuario(long numeroCedula) {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -50,7 +50,7 @@ public class UsuarioDAO {
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setLong(1, numeroCedula);			
+			ps.setLong(1, numeroCedula);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				long numeroCedulaC = Long.parseLong(rs.getString(1));
@@ -64,17 +64,40 @@ public class UsuarioDAO {
 			JOptionPane.showMessageDialog(null, "Error en la conexion " + e);
 			userEncontrado = null;
 		}
-		return userEncontrado;		
+		return userEncontrado;
 	}
 
-	public boolean agregarUsuario() {
+	public boolean creaCuenta(long numeroCedula, String nombreUsuario, String contrasenia) {
 		PreparedStatement ps;
-		String sql = "INSERT INTO estudiantes VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO cuenta VALUES(?,?,?)";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			// ps.setString();
+			ps.setLong(1, numeroCedula);
+			ps.setString(2, nombreUsuario);
+			ps.setString(3, contrasenia);
+			int result = ps.executeUpdate();
+			if (result > 0) {
+				conexionBD.cerrarConexionBD();
+				return true;
+			} else {
+				conexionBD.cerrarConexionBD();
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
+	public boolean agregarUsuario(long numeroCedula, String nombreCompleto, String correoElectronico) {
+		PreparedStatement ps;
+		String sql = "INSERT INTO usuarios VALUES(?,?,?)";
+		try {
+			conexionBD.establecerConexionBD();
+			ps = conexionBD.getCnn().prepareStatement(sql);
+			ps.setLong(1, numeroCedula);
+			ps.setString(2, nombreCompleto);
+			ps.setString(3, correoElectronico);
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexionBD.cerrarConexionBD();
@@ -105,6 +128,7 @@ public class UsuarioDAO {
 			}
 			conexionBD.cerrarConexionBD();
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
 			userEncontrado = null;
 		}
 

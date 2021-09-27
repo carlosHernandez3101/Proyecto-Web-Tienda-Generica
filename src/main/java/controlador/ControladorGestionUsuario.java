@@ -32,19 +32,6 @@ public class ControladorGestionUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String usuario, contrasenia;
-		UsuarioDTO userDTO = new UsuarioDTO();
-		if (request.getParameter("btnlogin") != null) {
-			usuario = request.getParameter("username");
-			contrasenia = request.getParameter("contrasenia");
-			Usuario user = userDTO.getUsuarioDao().existeCuentaUsuario(usuario, contrasenia);
-			if(user != null) {
-				JOptionPane.showMessageDialog(null, "El usuario se encuentra creado: " + user.getNumeroCedula());
-				response.sendRedirect("navUser.jsp");				
-			} else {
-				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
-			}
-		}
 
 	}
 
@@ -54,7 +41,34 @@ public class ControladorGestionUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String usuario, contrasenia;
+		UsuarioDTO userDTO = new UsuarioDTO();
+		if (request.getParameter("btnlogin") != null) {
+			usuario = request.getParameter("username");
+			contrasenia = request.getParameter("contrasenia");
+			Usuario user = userDTO.getUsuarioDao().existeCuentaUsuario(usuario, contrasenia);
+			if(user != null) {				
+				response.sendRedirect("navUser.jsp");				
+			} else {
+				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
+			}
+		} else if(request.getParameter("btncon") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			String nombreCompleto = request.getParameter("nombre");
+			String correoElectronico = request.getParameter("correo");
+			usuario = request.getParameter("usuario");
+			contrasenia = request.getParameter("contrasenia");
+			boolean userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
+			boolean cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
+			if(userCreado && cuentaCreada) {
+				JOptionPane.showMessageDialog(null, "El usuario fue creado");
+			} else {
+				JOptionPane.showMessageDialog(null, "El usuario no fue creado");
+			}
+			
+		}
+		
 
 	}
 

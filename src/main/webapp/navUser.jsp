@@ -29,7 +29,7 @@
     </nav>  
    <div class="login table-usu" >
     <h2>Usuarios</h2>
-    <form action="">
+    <form action="ControladorGestionUsuario" method="post">
         <div class="form">
             <div class="grid-50 container-95">
                 <div class="p-3 me-2 mb-3">
@@ -60,7 +60,7 @@
                     <div class="">
                         <label for="contraseña">
                             Contraseña
-                            <input type="text" name="contraseña" id="contraseña" required/>
+                            <input type="text" name="contrasenia" id="contraseña" required/>
                         </label>                   
                     </div>
                 </div>

@@ -44,7 +44,7 @@
                     <div class="">
                         <label for="usuario">
                             Usuario
-                            <input style="margin-left: 20px;" type="text" name="usuario" id="usuario" required/>
+                            <input style="margin-left: 20px;" type="text" name="usuario" id="usuario" />
                         </label>                   
                     </div>
                 </div>
@@ -52,15 +52,15 @@
                     <div class="">
                         <label for="Nombre">
                             Nombre Completo
-                            <input type="text" name="nombre" id="nombre" required/>
+                            <input type="text" name="nombre" id="nombre" />
                         </label>                   
                     </div>
                 </div>
                 <div class="p-3 me-2 mb-3">
                     <div class="">
-                        <label for="contraseña">
-                            Contraseña
-                            <input type="text" name="contrasenia" id="contraseña" required/>
+                        <label for="contraseÃ±a">
+                            ContraseÃ±a
+                            <input type="text" name="contrasenia" id="contraseÃ±a" />
                         </label>                   
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="">
                         <label for="correo">
                             Correo Electronico
-                            <input type="text" name="correo" id="correo" required/>
+                            <input type="text" name="correo" id="correo" />
                         </label>                   
                     </div>
                 </div>

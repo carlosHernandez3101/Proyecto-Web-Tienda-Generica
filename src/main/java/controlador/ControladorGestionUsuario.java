@@ -62,9 +62,16 @@ public class ControladorGestionUsuario extends HttpServlet {
 			String correoElectronico = request.getParameter("correo");
 			usuario = request.getParameter("usuario");
 			contrasenia = request.getParameter("contrasenia");
-			boolean userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
-			boolean cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
-			if(userCreado && cuentaCreada) {
+			boolean userCreado=true;
+			boolean cuentaCreada = true;
+			if (nombreCompleto == "" || correoElectronico == "" || usuario == "" || contrasenia =="") {
+				userCreado =false;
+		   		cuentaCreada =false;
+		   		JOptionPane.showMessageDialog(null, "Faltan datos del usuario");
+				response.sendRedirect("navUser.jsp");
+		   	} else if(userCreado && cuentaCreada) {
+				userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
+				cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 				JOptionPane.showMessageDialog(null, "El usuario fue creado");
 				response.sendRedirect("navUser.jsp");
 			} else {

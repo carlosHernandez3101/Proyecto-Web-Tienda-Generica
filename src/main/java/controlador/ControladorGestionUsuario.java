@@ -44,6 +44,7 @@ public class ControladorGestionUsuario extends HttpServlet {
 		
 		String usuario, contrasenia;
 		UsuarioDTO userDTO = new UsuarioDTO();
+		//validacion modulo login
 		if (request.getParameter("btnlogin") != null) {
 			usuario = request.getParameter("username");
 			contrasenia = request.getParameter("contrasenia");
@@ -54,7 +55,8 @@ public class ControladorGestionUsuario extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
 				response.sendRedirect("index.jsp");
 			}
-		} else if(request.getParameter("btncon") != null) {
+			//fin validacion modulo login			
+		} else if(request.getParameter("btncon") != null) { //Validacion navegacion usuario	
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
 			String correoElectronico = request.getParameter("correo");
@@ -79,7 +81,15 @@ public class ControladorGestionUsuario extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El usuario no fue encontrado");
 				response.sendRedirect("navUser.jsp");
 			}
+		} else if(request.getParameter("btneli") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			boolean userEliminado = userDTO.getUsuarioDao().eliminarUsuario(numeroCedula);
+			if(userEliminado) {
+				JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado");
+				response.sendRedirect("navUser.jsp");
+			}			
 		}
+		//Fin validacion navegacion de usuario 
 		
 
 	}

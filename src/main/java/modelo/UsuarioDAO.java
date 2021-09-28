@@ -167,13 +167,13 @@ public class UsuarioDAO {
 
 	}
 
-	public boolean eliminarUsuario(String correoInstitucional) {
+	public boolean eliminarUsuario(long numeroCedula) {
 		PreparedStatement ps;
-		String sql = "DELETE FROM estudiantes WHERE correo_institucional = ?";
+		String sql = "DELETE FROM usuarios WHERE usu_numero_cedula = ?";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setString(1, correoInstitucional);
+			ps.setLong(1, numeroCedula);
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexionBD.cerrarConexionBD();

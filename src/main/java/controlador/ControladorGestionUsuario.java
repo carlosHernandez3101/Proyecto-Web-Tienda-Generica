@@ -41,35 +41,35 @@ public class ControladorGestionUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String usuario, contrasenia;
 		UsuarioDTO userDTO = new UsuarioDTO();
-		//validacion modulo login
+		// validacion modulo login
 		if (request.getParameter("btnlogin") != null) {
 			usuario = request.getParameter("username");
 			contrasenia = request.getParameter("contrasenia");
 			Usuario user = userDTO.getUsuarioDao().existeCuentaUsuario(usuario, contrasenia);
-			if(user != null) {				
-				response.sendRedirect("navUser.jsp");				
+			if (user != null) {
+				response.sendRedirect("navUser.jsp");
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
 				response.sendRedirect("index.jsp");
 			}
-			//fin validacion modulo login			
-		} else if(request.getParameter("btncon") != null) { //Validacion navegacion usuario	
+			// fin validacion modulo login
+		} else if (request.getParameter("btncon") != null) { // Validacion navegacion usuario
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
 			String correoElectronico = request.getParameter("correo");
 			usuario = request.getParameter("usuario");
 			contrasenia = request.getParameter("contrasenia");
-			boolean userCreado=true;
+			boolean userCreado = true;
 			boolean cuentaCreada = true;
-			if (nombreCompleto == "" || correoElectronico == "" || usuario == "" || contrasenia =="") {
-				userCreado =false;
-		   		cuentaCreada =false;
-		   		JOptionPane.showMessageDialog(null, "Faltan datos del usuario");
+			if (nombreCompleto == "" || correoElectronico == "" || usuario == "" || contrasenia == "") {
+				userCreado = false;
+				cuentaCreada = false;
+				JOptionPane.showMessageDialog(null, "Faltan datos del usuario");
 				response.sendRedirect("navUser.jsp");
-		   	} else if(userCreado && cuentaCreada) {
+			} else if (userCreado && cuentaCreada) {
 				userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
 				cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 				JOptionPane.showMessageDialog(null, "El usuario fue creado");
@@ -77,26 +77,26 @@ public class ControladorGestionUsuario extends HttpServlet {
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no fue creado");
 				response.sendRedirect("navUser.jsp");
-			}			
-		} else if(request.getParameter("btnins") != null) {
+			}
+		} else if (request.getParameter("btnins") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			Usuario user = userDTO.getUsuarioDao().buscarUsuario(numeroCedula);
-			if(user != null) {
+			if (user != null) {
 				JOptionPane.showMessageDialog(null, user.toString());
 				response.sendRedirect("navUser.jsp");
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no fue encontrado");
 				response.sendRedirect("navUser.jsp");
 			}
-		} else if(request.getParameter("btneli") != null) {
+		} else if (request.getParameter("btneli") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			boolean userEliminado = userDTO.getUsuarioDao().eliminarUsuario(numeroCedula);
-			if(userEliminado) {
+			if (userEliminado) {
 				JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado");
 				response.sendRedirect("navUser.jsp");
-			}			
+			}
 		}
-		//Fin validacion navegacion de usuario 
+		// Fin validacion navegacion de usuario
 	}
 
 }

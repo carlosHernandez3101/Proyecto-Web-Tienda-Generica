@@ -36,7 +36,7 @@
 	<div class="login"
 		style="width: 800px; margin-left: 400px !important; background-color: rgba(255, 255, 255, 0.664) !important; margin-top: 2rem !important;">
 		<h2>Clientes</h2>
-		<form action="">
+		<form action="ControladorGestionCliente" method="post">
 			<div class="form">
 				<div class="grid-50 container-95">
 					<div class="p-3 me-1 mb-3">
@@ -50,8 +50,8 @@
 					<div class=" p-3 me-4 mb-3">
 						<div class="">
 							<label for="usuario"> Telefono <input
-								style="margin-left: 59.54px;" type="number" name="usuario"
-								id="usuario" required />
+								style="margin-left: 59.54px;" type="number" name="telefono"
+								id="telefono" required />
 							</label>
 						</div>
 					</div>
@@ -65,14 +65,14 @@
 					<div class="p-3 me-2 mb-3">
 						<div class="">
 							<label for="contraseña"> Correo Electrónico <input
-								type="email" name="contraseña" id="contraseña" required />
+								type="email" name="correo" id="correo" required />
 							</label>
 						</div>
 					</div>
 					<div class="p-3 me-2 mb-3">
 						<div class="">
 							<label for="correo"> Dirección <input
-								style="margin-left: 65px;" type="text" name="correo" id="correo"
+								style="margin-left: 65px;" type="text" name="direccion" id="direccion"
 								required />
 							</label>
 						</div>

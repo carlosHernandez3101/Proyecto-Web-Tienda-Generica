@@ -90,8 +90,6 @@ public class ControladorGestionUsuario extends HttpServlet {
 			}			
 		}
 		//Fin validacion navegacion de usuario 
-		
-
 	}
 
 }

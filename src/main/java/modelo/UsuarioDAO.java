@@ -192,7 +192,7 @@ public class UsuarioDAO {
 		ArrayList<Usuario> lstUsuarios = new ArrayList<Usuario>();
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT * FROM bd_estudiantes.estudiantes";
+		String sql = "SELECT * FROM bd_usuariostienda";
 		String listado = "";
 
 		try {

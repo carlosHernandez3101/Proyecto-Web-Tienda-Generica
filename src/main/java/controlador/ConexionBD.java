@@ -13,7 +13,7 @@ public class ConexionBD {
 	}
 
 	public void establecerConexionBD() {
-		String url = "jdbc:mysql://localhost/bd_usuariostienda";
+		String url = "jdbc:mysql://localhost/bd_tienda_generica";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			this.cnn = DriverManager.getConnection(url, "root", "root");

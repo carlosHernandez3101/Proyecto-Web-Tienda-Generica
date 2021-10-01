@@ -63,6 +63,11 @@ public class Cliente {
 
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
-	}	
+	}
 
+	@Override
+	public String toString() {
+		return "Cliente [numeroCedula=" + numeroCedula + ", nombreCompleto=" + nombreCompleto + ", direccion="
+				+ direccion + ", telefono=" + telefono + ", correoElectronico=" + correoElectronico + "]";
+	}	
 }

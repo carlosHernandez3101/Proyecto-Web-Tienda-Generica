@@ -85,6 +85,7 @@ public class UsuarioDAO {
 				return false;
 			}
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
 			return false;
 		}
 	}

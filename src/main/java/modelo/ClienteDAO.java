@@ -34,10 +34,32 @@ public class ClienteDAO {
 				return false;
 			}			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
 			return false;
+		}		
+	}
+	
+	public Cliente consultarCliente(long numeroCedula) {
+		Cliente clienteEncontrado = null;
+		PreparedStatement ps;
+		ResultSet rs;
+		String sql = "SELECT * FROM cliente WHERE cli_numero_cedula = " + numeroCedula;
+		try {
+			conexion.establecerConexionBD();
+			ps = conexion.getCnn().prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				long numeroCedulaE = Long.parseLong(rs.getString(1));
+				String nombreCompleto = rs.getString(2);
+				String direccion = rs.getString(3);
+				long telefono = Long.parseLong(rs.getString(4));
+				String correoElectronico = rs.getString(5);
+				clienteEncontrado = new Cliente(numeroCedulaE, nombreCompleto, direccion, telefono, correoElectronico);
+			}
+			conexion.cerrarConexionBD();
+		} catch (Exception e) {
+			clienteEncontrado = null;
 		}
-		
+		return clienteEncontrado;
 	}
 
 }

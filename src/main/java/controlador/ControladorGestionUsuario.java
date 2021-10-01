@@ -56,27 +56,25 @@ public class ControladorGestionUsuario extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			}
 			// fin validacion modulo login
-		} else if (request.getParameter("btncon") != null) { // Validacion navegacion usuario
+		} else if (request.getParameter("btnins") != null) { // Validacion navegacion usuario
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
 			String correoElectronico = request.getParameter("correo");
 			usuario = request.getParameter("usuario");
-			contrasenia = request.getParameter("contrasenia");
-			boolean userCreado = true;
-			boolean cuentaCreada = true;
+			contrasenia = request.getParameter("contraseña");
+			boolean userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
+			boolean cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 			if (nombreCompleto == "" || correoElectronico == "" || usuario == "" || contrasenia == "") {
 				userCreado = false;
 				cuentaCreada = false;
 				JOptionPane.showMessageDialog(null, "Faltan datos del usuario");
-				response.sendRedirect("navUser.jsp");
+				response.sendRedirect("usuarios_crear.jsp");
 			} else if (userCreado && cuentaCreada) {
-				userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
-				cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 				JOptionPane.showMessageDialog(null, "El usuario fue creado");
-				response.sendRedirect("navUser.jsp");
+				response.sendRedirect("usuarios_crear.jsp");
 			} else {
-				JOptionPane.showMessageDialog(null, "El usuario no fue creado");
-				response.sendRedirect("navUser.jsp");
+				JOptionPane.showMessageDialog(null, "El usuario no fue creado "+ userCreado+" "+ cuentaCreada);
+				response.sendRedirect("usuarios_crear.jsp");
 			}
 		} else if (request.getParameter("btnins") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));

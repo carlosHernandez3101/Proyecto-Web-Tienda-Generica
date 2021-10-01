@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import org.apache.catalina.User;
+
 import modelo.Cliente;
 import modelo.ClienteDTO;
 import modelo.UsuarioDTO;
@@ -40,18 +42,28 @@ public class ControladorGestionCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ClienteDTO clienteDTO = new ClienteDTO();
-		if(request.getParameter("btncon") != null) {
+		if(request.getParameter("btnins") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
-			String direccion = request.getParameter("");
-			long telefono = Long.parseLong(request.getParameter("cedula"));
+			String direccion = request.getParameter("direccion");
+			long telefono = Long.parseLong(request.getParameter("telefono"));
 			String correoElectronico = request.getParameter("correo");
-			Cliente cliente = new Cliente(12123, "dfsdfs", "cssdd", 14556, "dsd@sds");
+			Cliente cliente = new Cliente(numeroCedula, nombreCompleto, direccion, telefono, correoElectronico);
 			boolean clienteCreado = clienteDTO.getClienteDao().insertarCliente(cliente);
 			if (clienteCreado) {
-				JOptionPane.showMessageDialog(null, "Cliente agregado con exito");				
+				JOptionPane.showMessageDialog(null, "Cliente agregado con exito");
+				response.sendRedirect("clients_crear.jsp");
 			} else {
 				JOptionPane.showMessageDialog(null, "No se pudo agregar");
+				response.sendRedirect("clients_crear.jsp");
+			}
+		} else if(request.getParameter("btncon") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			Cliente clienteEncontrado = clienteDTO.getClienteDao().consultarCliente(numeroCedula);
+			if(clienteEncontrado != null) {
+				JOptionPane.showMessageDialog(null, clienteEncontrado.toString());
+			} else {
+				JOptionPane.showMessageDialog(null,"Cliente no encontrado");
 			}
 		}
 	}

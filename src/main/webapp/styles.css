@@ -85,8 +85,10 @@ button:hover {
 .nav-usuarios {
     text-decoration: none;
     font-size: 1.5rem;
-    padding: 1rem;
-    color: white;
+    padding: 0.3rem;
+    color:white;
+    background-color: rgb(83, 83, 83);
+    border-radius: 7px;
 }
 
 .grid-nav{
@@ -123,5 +125,13 @@ li {
     width: 800px;
     margin-left: 400px !important; 
     background-color: rgba(255, 255, 255, 0.664) !important;
-    margin-top:2rem !important;
+    margin-top:5rem !important;
+}
+
+.align{
+    text-align: center;
+}
+
+.font-size{
+    font-size: 2rem;
 }

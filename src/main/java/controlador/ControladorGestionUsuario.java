@@ -41,7 +41,6 @@ public class ControladorGestionUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String usuario, contrasenia;
 		UsuarioDTO userDTO = new UsuarioDTO();
 		// validacion modulo login
@@ -62,7 +61,8 @@ public class ControladorGestionUsuario extends HttpServlet {
 			String correoElectronico = request.getParameter("correo");
 			usuario = request.getParameter("usuario");
 			contrasenia = request.getParameter("contraseña");
-			boolean userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto, correoElectronico);
+			boolean userCreado = userDTO.getUsuarioDao().agregarUsuario(numeroCedula, nombreCompleto,
+					correoElectronico);
 			boolean cuentaCreada = userDTO.getUsuarioDao().creaCuenta(numeroCedula, usuario, contrasenia);
 			if (nombreCompleto == "" || correoElectronico == "" || usuario == "" || contrasenia == "") {
 				userCreado = false;
@@ -73,25 +73,25 @@ public class ControladorGestionUsuario extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El usuario fue creado");
 				response.sendRedirect("usuarios_crear.jsp");
 			} else {
-				JOptionPane.showMessageDialog(null, "El usuario no fue creado "+ userCreado+" "+ cuentaCreada);
+				JOptionPane.showMessageDialog(null, "El usuario no fue creado ");
 				response.sendRedirect("usuarios_crear.jsp");
 			}
-		} else if (request.getParameter("btnins") != null) {
+		} else if (request.getParameter("btncon") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			Usuario user = userDTO.getUsuarioDao().buscarUsuario(numeroCedula);
 			if (user != null) {
 				JOptionPane.showMessageDialog(null, user.toString());
-				response.sendRedirect("navUser.jsp");
+				response.sendRedirect("usuarios_consultar.jsp");
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no fue encontrado");
-				response.sendRedirect("navUser.jsp");
+				response.sendRedirect("usuarios_consultar.jsp");
 			}
 		} else if (request.getParameter("btneli") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			boolean userEliminado = userDTO.getUsuarioDao().eliminarUsuario(numeroCedula);
 			if (userEliminado) {
 				JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado");
-				response.sendRedirect("navUser.jsp");
+				response.sendRedirect("usuarios_eliminar.jsp");
 			}
 		}
 		// Fin validacion navegacion de usuario

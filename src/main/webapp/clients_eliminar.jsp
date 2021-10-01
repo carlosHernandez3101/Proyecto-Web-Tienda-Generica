@@ -81,7 +81,7 @@
       </li>   
       <div class="login" style="width: 600px;margin-left: 500px !important; background-color: rgba(255, 255, 255, 0.664) !important;margin-top:2rem !important;">
         <h2 >Eliminar Cliente</h2>
-        <form action="">
+        <form action="ControladorGestionCliente" method="post">
             <div class="form">            
                     <div class="p-3 me-1 mb-3">
                         <div class="" style="margin-left: 130px;">

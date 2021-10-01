@@ -186,7 +186,6 @@ public class UsuarioDAO {
 		} catch (Exception e) {
 			return false;
 		}
-
 	}
 
 	public String mostrarDirectorioUsuarios() {

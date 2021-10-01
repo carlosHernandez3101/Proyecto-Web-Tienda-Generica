@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="style-grid.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -99,7 +99,7 @@
 	</li>
 	<div class="login table-usu">
 		<h2>Usuarios</h2>
-		<form action="">
+		<form action="ControladorGestionUsuario" method="post">
 			<div class="form">
 				<div class="p-3 me-1 mb-3">
 					<div class="" style="margin-left: 230px;">

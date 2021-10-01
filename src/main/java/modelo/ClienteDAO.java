@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 import controlador.ConexionBD;
 
 public class ClienteDAO {
-	
+
 	private ConexionBD conexion;
-	
+
 	public ClienteDAO(ConexionBD conexion) {
-		this.conexion = conexion;		
+		this.conexion = conexion;
 	}
-	
+
 	public boolean insertarCliente(Cliente cliente) {
 		PreparedStatement ps;
 		String sql = "INSERT INTO cliente VALUES (?,?,?,?,?)";
@@ -26,18 +26,18 @@ public class ClienteDAO {
 			ps.setLong(4, cliente.getTelefono());
 			ps.setString(5, cliente.getCorreoElectronico());
 			int result = ps.executeUpdate();
-			if(result > 0) {
+			if (result > 0) {
 				conexion.cerrarConexionBD();
 				return true;
 			} else {
 				conexion.cerrarConexionBD();
 				return false;
-			}			
+			}
 		} catch (Exception e) {
 			return false;
-		}		
+		}
 	}
-	
+
 	public Cliente consultarCliente(long numeroCedula) {
 		Cliente clienteEncontrado = null;
 		PreparedStatement ps;
@@ -47,7 +47,7 @@ public class ClienteDAO {
 			conexion.establecerConexionBD();
 			ps = conexion.getCnn().prepareStatement(sql);
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				long numeroCedulaE = Long.parseLong(rs.getString(1));
 				String nombreCompleto = rs.getString(2);
 				String direccion = rs.getString(3);
@@ -60,6 +60,25 @@ public class ClienteDAO {
 			clienteEncontrado = null;
 		}
 		return clienteEncontrado;
+	}
+
+	public boolean eliminarCliente(long numeroCedula) {
+		PreparedStatement ps;
+		String sql = "DELETE FROM cliente WHERE cli_numero_cedula = " + numeroCedula;
+		try {
+			conexion.establecerConexionBD();
+			ps = conexion.getCnn().prepareStatement(sql);
+			int result = ps.executeUpdate();
+			if (result > 0) {
+				conexion.cerrarConexionBD();
+				return true;
+			} else {
+				conexion.cerrarConexionBD();
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

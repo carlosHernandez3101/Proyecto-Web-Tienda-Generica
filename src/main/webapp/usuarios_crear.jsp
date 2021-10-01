@@ -84,7 +84,7 @@
       </ul>
     </li>
     <div class="login table-usu" >
-      <h2>Usuarios</h2>
+      <h2>Agregar Usuario</h2>
       <form action="ControladorGestionUsuario" method="post">
           <div class="form">
               <div class="grid-50 container-95">

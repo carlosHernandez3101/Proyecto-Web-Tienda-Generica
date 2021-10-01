@@ -20,29 +20,33 @@ import modelo.UsuarioDTO;
 @WebServlet("/ControladorGestionCliente")
 public class ControladorGestionCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ControladorGestionCliente() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ControladorGestionCliente() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ClienteDTO clienteDTO = new ClienteDTO();
-		if(request.getParameter("btnins") != null) {
+		if (request.getParameter("btnins") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
 			String direccion = request.getParameter("direccion");
@@ -57,13 +61,25 @@ public class ControladorGestionCliente extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "No se pudo agregar");
 				response.sendRedirect("clients_crear.jsp");
 			}
-		} else if(request.getParameter("btncon") != null) {
+		} else if (request.getParameter("btncon") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			Cliente clienteEncontrado = clienteDTO.getClienteDao().consultarCliente(numeroCedula);
-			if(clienteEncontrado != null) {
+			if (clienteEncontrado != null) {
 				JOptionPane.showMessageDialog(null, clienteEncontrado.toString());
+				response.sendRedirect("clients_consultar.jsp");
 			} else {
-				JOptionPane.showMessageDialog(null,"Cliente no encontrado");
+				JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+				response.sendRedirect("clients_consultar.jsp");
+			}
+		} else if (request.getParameter("btneli") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			boolean clienteEliminado = clienteDTO.getClienteDao().eliminarCliente(numeroCedula);
+			if (clienteEliminado) {
+				JOptionPane.showMessageDialog(null, "Cliente eliminado");
+				response.sendRedirect("clients_eliminar.jsp");
+			}else {
+				JOptionPane.showMessageDialog(null, "Cliente no fue eliminado");
+				response.sendRedirect("clients_consultar.jsp");
 			}
 		}
 	}

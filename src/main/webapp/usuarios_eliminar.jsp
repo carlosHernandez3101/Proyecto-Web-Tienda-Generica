@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="style-grid.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -28,10 +28,10 @@
         Usuarios
       </button>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(104, 98, 98, 0.712);">
-        <li><a class="dropdown-item font-size" href="usuarios_consultar.html">Consultar</a></li>
-        <li><a class="dropdown-item font-size" href="usuarios_crear.html">Crear</a></li>
-        <li><a class="dropdown-item font-size" href="usuarios_actualizar.html">Actualizar</a></li>
-        <li><a class="dropdown-item font-size" href="usuarios_eliminar.html">Eliminar</a></li>
+        <li><a class="dropdown-item font-size" href="usuarios_consultar.jsp">Consultar</a></li>
+        <li><a class="dropdown-item font-size" href="usuarios_crear.jsp">Crear</a></li>
+        <li><a class="dropdown-item font-size" href="usuarios_actualizar.jsp">Actualizar</a></li>
+        <li><a class="dropdown-item font-size" href="usuarios_eliminar.jsp">Eliminar</a></li>
       </ul>
     </li>
     <li class=" ms-2 nav-item dropdown">
@@ -39,10 +39,10 @@
         Clientes
       </button>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(104, 98, 98, 0.712);">
-        <li><a class="dropdown-item font-size" href="clients_consultar.html">Consultar</a></li>
-        <li><a class="dropdown-item font-size" href="clients_crear.html">Crear</a></li>
-        <li><a class="dropdown-item font-size" href="clients_actualizar.html">Actualizar</a></li>
-        <li><a class="dropdown-item font-size" href="clients_eliminar.html">Eliminar</a></li>
+        <li><a class="dropdown-item font-size" href="clients_consultar.jsp">Consultar</a></li>
+        <li><a class="dropdown-item font-size" href="clients_crear.jsp">Crear</a></li>
+        <li><a class="dropdown-item font-size" href="clients_actualizar.jsp">Actualizar</a></li>
+        <li><a class="dropdown-item font-size" href="clients_eliminar.jsp">Eliminar</a></li>
       </ul>
     </li>
     <li class=" ms-2 nav-item dropdown">
@@ -50,10 +50,10 @@
         Proveedores
       </button>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgba(104, 98, 98, 0.712);">
-        <li><a class="dropdown-item font-size" href="proveedores_consultar.html">Consultar</a></li>
-        <li><a class="dropdown-item font-size" href="proveedores_crear.html">Crear</a></li>
-        <li><a class="dropdown-item font-size" href="proveedores_actualizar.html">Actualizar</a></li>
-        <li><a class="dropdown-item font-size" href="proveedores_eliminar.html">Eliminar</a></li>
+        <li><a class="dropdown-item font-size" href="proveedores_consultar.jsp">Consultar</a></li>
+        <li><a class="dropdown-item font-size" href="proveedores_crear.jsp">Crear</a></li>
+        <li><a class="dropdown-item font-size" href="proveedores_actualizar.jsp">Actualizar</a></li>
+        <li><a class="dropdown-item font-size" href="proveedores_eliminar.jsp">Eliminar</a></li>
       </ul>
     </li>
     <li class=" ms-2 nav-item dropdown">
@@ -84,8 +84,8 @@
       </ul>
     </li>
     <div class="login table-usu" >
-      <h2>Usuarios</h2>
-      <form action="">
+      <h2>Eliminar usuario</h2>
+      <form action="ControladorGestionUsuario" method="post">
         <div class="form">            
           <div class="p-3 me-1 mb-3">
               <div class="" style="margin-left: 230px;">

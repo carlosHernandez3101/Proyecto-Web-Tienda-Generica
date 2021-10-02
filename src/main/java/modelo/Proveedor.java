@@ -1,7 +1,7 @@
 package modelo;
 
 public class Proveedor {
-	
+
 	private String NIT;
 	private String nombreProveedor;
 	private String direccion;
@@ -9,19 +9,19 @@ public class Proveedor {
 	private String ciudad;
 
 	public Proveedor() {
-	    }
+	}
 
 	public Proveedor(String NIT) {
-	        this.NIT = NIT;
-	    }
+		this.NIT = NIT;
+	}
 
 	public Proveedor(String NIT, String NombreProveedor, String Direccion, String Telefono, String Ciudad) {
-	        this.NIT = NIT;
-	        this.nombreProveedor = NombreProveedor;
-	        this.direccion = Direccion;
-	        this.telefono = Telefono;
-	        this.ciudad = Ciudad;
-	    }
+		this.NIT = NIT;
+		this.nombreProveedor = NombreProveedor;
+		this.direccion = Direccion;
+		this.telefono = Telefono;
+		this.ciudad = Ciudad;
+	}
 
 	public String getNIT() {
 		return NIT;

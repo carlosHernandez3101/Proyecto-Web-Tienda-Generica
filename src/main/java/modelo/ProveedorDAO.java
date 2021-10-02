@@ -3,6 +3,8 @@ package modelo;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import controlador.ConexionBD;
 
 public class ProveedorDAO {
@@ -12,18 +14,17 @@ public class ProveedorDAO {
 		this.conexionBD = conexionBD;
 	}
 
-	public boolean agregarProveedor(String NIT, String NombreProveedor, String Direccion, String Telefono,
-			String Ciudad) {
+	public boolean agregarProveedor(Proveedor proveedor) {
 		PreparedStatement ps;
-		String sql = "INSERT INTO Proveedor VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO proveedor VALUES(?,?,?,?,?)";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setString(1, NIT);
-			ps.setString(2, NombreProveedor);
-			ps.setString(3, Direccion);
-			ps.setString(4, Telefono);
-			ps.setString(5, Ciudad);
+			ps.setString(1, proveedor.getNIT());
+			ps.setString(2, proveedor.getNombreProveedor());
+			ps.setString(3, proveedor.getDireccion());
+			ps.setString(4, proveedor.getTelefono());
+			ps.setString(5, proveedor.getCiudad());
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexionBD.cerrarConexionBD();
@@ -34,6 +35,7 @@ public class ProveedorDAO {
 			}
 
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
 			return false;
 		}
 	}
@@ -41,7 +43,7 @@ public class ProveedorDAO {
 	public Proveedor buscarProveedor(Proveedor prov) {
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT NIT, Nombre_Proveedor, Direccion, Telefono, Ciudad FROM Proveedor WHERE NIT = ?";
+		String sql = "SELECT * FROM proveedor WHERE prov_nit = ?";
 		Proveedor proveedorEncontrado = null;
 		try {
 			conexionBD.establecerConexionBD();
@@ -92,11 +94,10 @@ public class ProveedorDAO {
 
 	public boolean eliminarProveedor(Proveedor prov) {
 		PreparedStatement ps;
-		String sql = "DELETE FROM Proveedores WHERE NIT = ?";
+		String sql = "DELETE FROM proveedor WHERE prov_nit = " + prov.getNIT();
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setString(1, prov.getNIT());
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexionBD.cerrarConexionBD();

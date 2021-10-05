@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import controlador.ConexionBD;
-import modelo.Usuario;
 
 public class UsuarioDAO {
 
@@ -20,7 +19,7 @@ public class UsuarioDAO {
 		PreparedStatement ps;
 		ResultSet rs;
 		Usuario userEncontrado = null;
-		String sql = "SELECT CUE_NOMBRE_USUARIO, USU_NUMERO_CEDULA FROM cuenta where CUE_NOMBRE_USUARIO = ? and CUE_CONTRASENIA = ?";
+		String sql = "SELECT CUE_NOMBRE_USUARIO, USU_NUMERO_CEDULA FROM cuentas where CUE_NOMBRE_USUARIO = ? and CUE_CONTRASENIA = ?";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
@@ -69,7 +68,7 @@ public class UsuarioDAO {
 
 	public boolean creaCuenta(long numeroCedula, String nombreUsuario, String contrasenia) {
 		PreparedStatement ps;
-		String sql = "INSERT INTO cuenta VALUES(?,?,?)";
+		String sql = "INSERT INTO cuentas VALUES(?,?,?)";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
@@ -141,19 +140,16 @@ public class UsuarioDAO {
 		return userEncontrado;
 	}
 
-	public boolean modificarUsuario(String correoInstitucional, String correoPersonal, long numeroTelefonicoCelular,
-			long numeroTelefonicoFijo, String programaAcademico) {
+	public boolean modificarUsuario(long numeroCedula, String nombreCompleto, String correoElectronico) {
 
 		PreparedStatement ps;
-		String sql = "UPDATE estudiantes SET correo_personal = ? , numero_telefonico_celular = ?, numero_telefonico_fijo = ?, programa_academico = ? WHERE correo_institucional = ?";
+		String sql = "UPDATE usuarios SET usu_nombre_completo= ?, usu_correo_electronico= ? WHERE usu_numero_cedula = "
+				+ numeroCedula;
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
-			ps.setString(5, correoInstitucional);
-			ps.setString(1, correoPersonal);
-			ps.setLong(2, numeroTelefonicoCelular);
-			ps.setLong(3, numeroTelefonicoFijo);
-			ps.setString(4, programaAcademico);
+			ps.setString(1, nombreCompleto);
+			ps.setString(2, correoElectronico);
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexionBD.cerrarConexionBD();

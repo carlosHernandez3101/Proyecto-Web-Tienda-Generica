@@ -85,7 +85,7 @@
                     <div class="">
                         <label for="cedula">
                             Nit
-                            <input style="margin-left: 110px;"type="text" name="cedula" id="Cedula" required/>
+                            <input style="margin-left: 110px;"type="text" name="nit" id="nit" required/>
                         </label>                   
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="">
                         <label for="usuario">
                             Telefono
-                            <input style="margin-left: 59.54px;" type="text" name="usuario" id="usuario" required/>
+                            <input style="margin-left: 59.54px;" type="text" name="telefono" id="telefono" required/>
                         </label>                   
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <div class="">
                         <label for="contraseña">
                             Ciudad
-                            <input style="margin-left: 70px;" type="text" name="contraseña" id="contraseña" required/>
+                            <input style="margin-left: 70px;" type="text" name="ciudad" id="ciudad" required/>
                         </label>                   
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="">
                         <label for="correo">
                             Dirección
-                            <input style="margin-left: 65px;" type="text" name="correo" id="correo" required/>
+                            <input style="margin-left: 65px;" type="text" name="direccion" id="direccion" required/>
                         </label>                   
                     </div>
                 </div>

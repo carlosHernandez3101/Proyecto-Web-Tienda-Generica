@@ -59,13 +59,13 @@
 		<ul class="dropdown-menu" aria-labelledby="navbarDropdown"
 			style="background-color: rgba(104, 98, 98, 0.712);">
 			<li><a class="dropdown-item font-size"
-				href="proveedores_consultar.html">Consultar</a></li>
+				href="proveedores_consultar.jsp">Consultar</a></li>
 			<li><a class="dropdown-item font-size"
-				href="proveedores_crear.html">Crear</a></li>
+				href="proveedores_crear.jsp">Crear</a></li>
 			<li><a class="dropdown-item font-size"
-				href="proveedores_actualizar.html">Actualizar</a></li>
+				href="proveedores_actualizar.jsp">Actualizar</a></li>
 			<li><a class="dropdown-item font-size"
-				href="proveedores_eliminar.html">Eliminar</a></li>
+				href="proveedores_eliminar.jsp">Eliminar</a></li>
 		</ul>
 	</li>
 	<li class=" ms-2 nav-item dropdown">
@@ -98,7 +98,7 @@
 	</li>
 	<div class="login table-usu">
 		<h2>Usuarios</h2>
-		<form action="">
+		<form action="ControladorGestionUsuario" method="post">
 			<div class="form">
 				<div class="grid-50 container-95">
 					<div class="p-3 me-2 mb-3">

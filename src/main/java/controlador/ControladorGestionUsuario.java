@@ -93,6 +93,18 @@ public class ControladorGestionUsuario extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado");
 				response.sendRedirect("usuarios_eliminar.jsp");
 			}
+		} else if(request.getParameter("btnact") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			String nombreCompleto = request.getParameter("nombre");
+			String correoElectronico = request.getParameter("correo");
+			boolean userModificado = userDTO.getUsuarioDao().modificarUsuario(numeroCedula, nombreCompleto, correoElectronico);
+			if(userModificado) {
+				JOptionPane.showMessageDialog(null, "El usuario ha sido modificado");
+				response.sendRedirect("usuarios_actualizar.jsp");
+			} else {
+				JOptionPane.showMessageDialog(null, "El usuario no ha sido modificado");
+				response.sendRedirect("usuarios_actualizar.jsp");
+			}
 		}
 		// Fin validacion navegacion de usuario
 	}

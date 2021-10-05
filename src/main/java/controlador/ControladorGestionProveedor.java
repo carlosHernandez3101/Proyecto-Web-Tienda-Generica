@@ -73,8 +73,17 @@ public class ControladorGestionProveedor extends HttpServlet {
 			} else {
 				JOptionPane.showMessageDialog(null, "Proveedor no eliminado");
 				response.sendRedirect("proveedores_eliminar.jsp");
+			}			
+		} else if(request.getParameter("btnact") != null) {
+			Proveedor proveedor = new Proveedor(nit, nombreCompleto, direccion, telefono, ciudad);
+			boolean proveedorActualizado = proveedorDTO.getProveedoresDao().modificarProveedor(proveedor);
+			if(proveedorActualizado) {
+				JOptionPane.showMessageDialog(null, "El proveedor ha sido actualizado");
+				response.sendRedirect("proveedores_actualizar.jsp");
+			} else {
+				JOptionPane.showMessageDialog(null, "El proveedor no ha sido actualizado");
+				response.sendRedirect("proveedores_actualizar.jsp");
 			}
-			
 		}
 		
 	}

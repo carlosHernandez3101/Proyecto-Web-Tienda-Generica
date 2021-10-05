@@ -87,7 +87,7 @@
                         <div class="" style="margin-left: 130px;">
                             <label for="cedula">
                                 Cedula
-                                <input type="text" name="cedula" id="Cedula" required/>
+                                <input type="text" name="cedula" id="cedula" required/>
                             </label>                   
                         </div>
                     </div>          

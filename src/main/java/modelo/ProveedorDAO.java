@@ -16,7 +16,7 @@ public class ProveedorDAO {
 
 	public boolean agregarProveedor(Proveedor proveedor) {
 		PreparedStatement ps;
-		String sql = "INSERT INTO proveedor VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO proveedores VALUES(?,?,?,?,?)";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
@@ -43,7 +43,7 @@ public class ProveedorDAO {
 	public Proveedor buscarProveedor(Proveedor prov) {
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT * FROM proveedor WHERE prov_nit = ?";
+		String sql = "SELECT * FROM proveedores WHERE prov_nit = ?";
 		Proveedor proveedorEncontrado = null;
 		try {
 			conexionBD.establecerConexionBD();
@@ -67,9 +67,8 @@ public class ProveedorDAO {
 	}
 
 	public boolean modificarProveedor(Proveedor prov) {
-
 		PreparedStatement ps;
-		String sql = "UPDATE Proveedores SET Nombre_Proveedor = ? , Direccion = ?, Telefono = ?, Ciudad = ? WHERE NIT = ?";
+		String sql = "UPDATE proveedores SET prov_nombre = ? , prov_direccion = ?, prov_telefono = ?, prov_ciudad = ? WHERE prov_nit = ?";
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
@@ -87,14 +86,14 @@ public class ProveedorDAO {
 				return false;
 			}
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
 			return false;
 		}
-
 	}
 
 	public boolean eliminarProveedor(Proveedor prov) {
 		PreparedStatement ps;
-		String sql = "DELETE FROM proveedor WHERE prov_nit = " + prov.getNIT();
+		String sql = "DELETE FROM proveedores WHERE prov_nit = " + prov.getNIT();
 		try {
 			conexionBD.establecerConexionBD();
 			ps = conexionBD.getCnn().prepareStatement(sql);
@@ -116,7 +115,7 @@ public class ProveedorDAO {
 		ArrayList<Proveedor> lstProveedor = new ArrayList<Proveedor>();
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT * FROM BD_UsuariosTienda.Proveedor";
+		String sql = "SELECT * FROM proveedores";
 		String listado = "";
 
 		try {

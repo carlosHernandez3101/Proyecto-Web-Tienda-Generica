@@ -16,7 +16,7 @@ public class ClienteDAO {
 
 	public boolean insertarCliente(Cliente cliente) {
 		PreparedStatement ps;
-		String sql = "INSERT INTO cliente VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO clientes VALUES (?,?,?,?,?)";
 		try {
 			conexion.establecerConexionBD();
 			ps = conexion.getCnn().prepareStatement(sql);
@@ -42,7 +42,7 @@ public class ClienteDAO {
 		Cliente clienteEncontrado = null;
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT * FROM cliente WHERE cli_numero_cedula = " + numeroCedula;
+		String sql = "SELECT * FROM clientes WHERE cli_numero_cedula = " + numeroCedula;
 		try {
 			conexion.establecerConexionBD();
 			ps = conexion.getCnn().prepareStatement(sql);
@@ -64,10 +64,11 @@ public class ClienteDAO {
 
 	public boolean eliminarCliente(long numeroCedula) {
 		PreparedStatement ps;
-		String sql = "DELETE FROM cliente WHERE cli_numero_cedula = " + numeroCedula;
+		String sql = "DELETE FROM clientes WHERE cli_numero_cedula = "+ numeroCedula ;
 		try {
 			conexion.establecerConexionBD();
 			ps = conexion.getCnn().prepareStatement(sql);
+			//ps.setLong(1, numeroCedula);
 			int result = ps.executeUpdate();
 			if (result > 0) {
 				conexion.cerrarConexionBD();
@@ -77,6 +78,32 @@ public class ClienteDAO {
 				return false;
 			}
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+			return false;
+		}
+	}
+
+	public boolean modificarDatosCliente(Cliente cliente) {
+		PreparedStatement ps;
+		String sql = "UPDATE clientes SET cli_nombre_completo = ?, cli_direccion = ?, cli_telefono = ?, cli_correo_electronico = ? WHERE cli_numero_cedula = "
+				+ cliente.getNumeroCedula();		
+		try {
+			conexion.establecerConexionBD();
+			ps = conexion.getCnn().prepareStatement(sql);
+			ps.setString(1, cliente.getNombreCompleto());
+			ps.setString(2, cliente.getDireccion());
+			ps.setLong(3, cliente.getTelefono());
+			ps.setString(4, cliente.getCorreoElectronico());
+			int result = ps.executeUpdate();
+			if (result > 0) {
+				conexion.cerrarConexionBD();
+				return true;
+			} else {
+				conexion.cerrarConexionBD();
+				return false;
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
 			return false;
 		}
 	}

@@ -2,8 +2,6 @@ package controlador;
 
 import java.sql.*;
 
-import javax.swing.JOptionPane;
-
 public class ConexionBD {
 	
 	private Connection cnn;

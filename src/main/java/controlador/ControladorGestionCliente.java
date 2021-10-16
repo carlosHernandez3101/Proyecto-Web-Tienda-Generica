@@ -45,13 +45,20 @@ public class ControladorGestionCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long numeroCedula = Long.parseLong(request.getParameter("cedula"));
-		String nombreCompleto = request.getParameter("nombre");
-		String direccion = request.getParameter("direccion");
-		long telefono = Long.parseLong(request.getParameter("telefono"));
-		String correoElectronico = request.getParameter("correo");
+		/*
+		 * long numeroCedula = Long.parseLong(request.getParameter("cedula")); String
+		 * nombreCompleto = request.getParameter("nombre"); String direccion =
+		 * request.getParameter("direccion"); long telefono =
+		 * Long.parseLong(request.getParameter("telefono")); String correoElectronico =
+		 * request.getParameter("correo");
+		 */
 		
 		if (request.getParameter("btnins") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			String nombreCompleto = request.getParameter("nombre");
+			String direccion = request.getParameter("direccion");
+			long telefono = Long.parseLong(request.getParameter("telefono"));
+			String correoElectronico = request.getParameter("correo");
 			Cliente cliente = new Cliente(numeroCedula, nombreCompleto, direccion, telefono, correoElectronico);
 			boolean clienteCreado = clienteDTO.getClienteDao().insertarCliente(cliente);
 			if (clienteCreado) {
@@ -61,7 +68,9 @@ public class ControladorGestionCliente extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "No se pudo agregar");
 				response.sendRedirect("clients_crear.jsp");
 			}
-		} else if (request.getParameter("btncon") != null) {
+		} 
+		if (request.getParameter("btncon") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			Cliente clienteEncontrado = clienteDTO.getClienteDao().consultarCliente(numeroCedula);
 			if (clienteEncontrado != null) {
 				JOptionPane.showMessageDialog(null, clienteEncontrado.toString());
@@ -71,6 +80,12 @@ public class ControladorGestionCliente extends HttpServlet {
 				response.sendRedirect("clients_consultar.jsp");
 			}
 		} else if (request.getParameter("btneli") != null) {
+			JOptionPane.showMessageDialog(null, "eliminar");
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			String nombreCompleto = request.getParameter("nombre");
+			String direccion = request.getParameter("direccion");
+			long telefono = Long.parseLong(request.getParameter("telefono"));
+			String correoElectronico = request.getParameter("correo");
 			boolean clienteEliminado = clienteDTO.getClienteDao().eliminarCliente(numeroCedula);
 			if (clienteEliminado) {
 				JOptionPane.showMessageDialog(null, "Cliente eliminado");
@@ -80,6 +95,11 @@ public class ControladorGestionCliente extends HttpServlet {
 				response.sendRedirect("clients_consultar.jsp");
 			}
 		} else if(request.getParameter("btnact") != null) {
+			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
+			String nombreCompleto = request.getParameter("nombre");
+			String direccion = request.getParameter("direccion");
+			long telefono = Long.parseLong(request.getParameter("telefono"));
+			String correoElectronico = request.getParameter("correo");
 			Cliente cliente = new Cliente(numeroCedula, nombreCompleto, direccion, telefono, correoElectronico);
 			boolean clienteModificado = clienteDTO.getClienteDao().modificarDatosCliente(cliente);
 			if(clienteModificado) {

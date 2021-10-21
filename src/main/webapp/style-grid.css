@@ -1,4 +1,4 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 .grid-50{
     display: grid;
     grid-auto-rows: auto;
@@ -14,4 +14,10 @@
 .margin-input {
     margin-left: 38px;
     margin-right: 200px;
+}
+
+.grid-33{
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(33.3%, 1fr));
 }

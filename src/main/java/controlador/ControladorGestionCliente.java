@@ -80,12 +80,7 @@ public class ControladorGestionCliente extends HttpServlet {
 				response.sendRedirect("clients_consultar.jsp");
 			}
 		} else if (request.getParameter("btneli") != null) {
-			JOptionPane.showMessageDialog(null, "eliminar");
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
-			String nombreCompleto = request.getParameter("nombre");
-			String direccion = request.getParameter("direccion");
-			long telefono = Long.parseLong(request.getParameter("telefono"));
-			String correoElectronico = request.getParameter("correo");
 			boolean clienteEliminado = clienteDTO.getClienteDao().eliminarCliente(numeroCedula);
 			if (clienteEliminado) {
 				JOptionPane.showMessageDialog(null, "Cliente eliminado");

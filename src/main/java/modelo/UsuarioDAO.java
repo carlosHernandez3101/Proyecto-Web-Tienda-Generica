@@ -115,7 +115,8 @@ public class UsuarioDAO {
 	public Usuario buscarUsuario(long numeroCedula) {
 		PreparedStatement ps;
 		ResultSet rs;
-		String sql = "SELECT * FROM usuarios WHERE usu_numero_cedula = ?";
+		String sql ="SELECT usuarios.*, cuenta.cue_nombre_usuario, cuenta.cue_contrasenia FROM bd_tienda_generica.usuarios join cuenta on usuarios.usu_numero_cedula=cuenta.usu_numero_cedula where usuarios.usu_numero_cedula= ?";
+		//String sql = "SELECT * FROM usuarios WHERE usu_numero_cedula = ?";
 		Usuario userEncontrado = null;
 		try {
 			conexionBD.establecerConexionBD();
@@ -126,10 +127,14 @@ public class UsuarioDAO {
 				long numCedula = Long.parseLong(rs.getString(1));
 				String nombreCompleto = rs.getString(2);
 				String correoElectronico = rs.getString(3);
+				String usu =rs.getString(4);
+				String contrasenia =rs.getString(5);
 				userEncontrado = new Usuario();
 				userEncontrado.setNumeroCedula(numeroCedula);
 				userEncontrado.setNombreCompleto(nombreCompleto);
 				userEncontrado.setCorreoPersonal(correoElectronico);
+				userEncontrado.setUsuario(usu);
+				userEncontrado.setContrasenia(contrasenia);
 			}
 			conexionBD.cerrarConexionBD();
 		} catch (Exception e) {

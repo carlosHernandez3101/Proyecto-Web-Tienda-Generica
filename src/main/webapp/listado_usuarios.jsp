@@ -1,10 +1,13 @@
+<%@page import="modelo.Usuario"%>
+<%@page import="modelo.ReportesDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style-grid.css">
@@ -75,56 +78,72 @@
       </nav>   
         
     </header>
-    <div class="login">
-        <h2 class="label-color" >Productos</h2>
-        <form action="ControladorProductos" method ="post" >
-            <div class="form">            
-                    <div class="p-3 me-1 mb-3 ">
-                        <div class="d-flex" style="margin-left: px;">
-                            <label class="label-color" class="p-3" for="cedula">
-                                Nombre del archivo
-                                <input type="text" name="cedula" id="Cedula" required/>                                
-                            </label>
-                            <div>
-                                <input class="button-login m-2 p-1" type="submit" style="width: 90px !important; margin-top: 15px !important" name="btnex"  value="Examinar">
-                            </div>                    
-                        </div>
-                    </div>          
-            </div>
-            
-            <form action="ControladorCSV" method="post" >  
-            <div class="d-flex p-3 btn-i" style="align-items: center; margin-left: 10rem !important;">     
-                
-                <input class="button-login p-2  me-5" type="submit" style="width: 90px !important; margin-left: 70px;" name="btncarg"  value="Cargar">
-                          
-            </div>
-            </form>          
-       </form>
+     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+<%
+ReportesDTO rep = new ReportesDTO();
+ArrayList<Usuario> listausuarios = rep.getReportesDao().listarusuarios();
+%>   
+    <div class="login" style="width: 57rem;margin-left: auto !important;">
+        <h2 class="label-color">Listado de Usuarios</h2>
+        <table class="default">
+            <thead class="filas">
+                <tr class="label-color">          
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Correo Electronico</th>
+                    <th>Usuario</th>
+                    <th>Password</th>                         
+                </tr>
+            </thead>
+             <tbody class="filas">
+                 <% 
+							
+							for (Usuario us: listausuarios){
+								
+						
+								%>    
+                <tr>
+								<td style="font-size: 15px"> <%=us.getNumeroCedula() %></td>
+								<td style="font-size: 15px"><%= us.getNombreCompleto()%></td>
+								<td style="font-size: 15px"><%= us.getCorreoPersonal()%></td>
+								<td style="font-size: 15px"><%= us.getUsuario()%></td>
+								<td style="font-size: 15px"><%=us.getContrasenia()%></td>
+								
+								
+								</tr>
+								
+								
+								
+							<%} %>
+             </tbody>                     
+        </table>
+       
     </div>
-    <div class="mt-5" style="background-color: rgba(0, 0, 0, 0.452);">
-      <div class="mb-5 mt-5 d-flex" >
-        <div class=" ms-5 mt-3 logoFooter ms-5">
-          <a href="https://misionticueb.myopenlms.net/" target="_blank"><img alt="logo" src="images/channels-642_misiontic_logo.png" width="100px"></a>
-        </div>    
-        <div class="logo-universidad ms-5 mt-3" > 
-          <a href="https://www.unbosque.edu.co/" target="_blank"><img alt="Logo minfruver" src="images/Logo_de_la_Universidad_El_Bosque.svg.png" width="100px"></a>
+    <div class="footer-w" >
+        <div class="mb-5 mt-5 d-flex" >
+          <div class=" ms-5 mt-3 logoFooter ms-5">
+            <a href="https://misionticueb.myopenlms.net/" target="_blank"><img alt="logo" src="images/channels-642_misiontic_logo.png" width="100px"></a>
+          </div>    
+          <div class="logo-universidad ms-5 mt-3" > 
+            <a href="https://www.unbosque.edu.co/" target="_blank"><img alt="Logo minfruver" src="images/Logo_de_la_Universidad_El_Bosque.svg.png" width="100px"></a>
+          </div>  
+          <div class="label-color  ms-5 mt-5">      
+            <p><b>Autores: </b>Carlos Hernandez, Jhon Rubiano, Jamilton Vidal, Sandra Rodríguez</p>
+          </div>  
+          <div class="InfoGeneral ms-5 mt-5 label-color d-flex">
+            <p>Siguenos en nuestras redes sociales</p>
+            <div class="redesSociales">
+              <a class="ms-5" href="#"><img class="icon" alt="Facebook" src="images/Facebook-f_Logo-Blue-Logo.wine.svg"></a>
+              <a class="ms-5" href="#"><img class="icon" alt="Instagram" src="images/Instagram-Glyph-Color-Logo.wine.svg"></a>
+              <a class="ms-5" href="#"><img class="icon-t" alt="Twitter" src="images/pngaaa.com-615958.png"></a>
+            </div>            
+          </div>    
         </div>  
-        <div class="label-color  ms-5 mt-5">      
-          <p><b>Autores: </b>Carlos Hernandez, Jhon Rubiano, Jamilton Vidal, Sandra Rodrï¿½guez</p>
-        </div>  
-        <div class="InfoGeneral ms-5 mt-5 label-color d-flex">
-          <p>Siguenos en nuestras redes sociales</p>
-          <div class="redesSociales">
-            <a class="ms-5" href="#"><img class="icon" alt="Facebook" src="images/Facebook-f_Logo-Blue-Logo.wine.svg"></a>
-            <a class="ms-5" href="#"><img class="icon" alt="Instagram" src="images/Instagram-Glyph-Color-Logo.wine.svg"></a>
-            <a class="ms-5" href="#"><img class="icon-t" alt="Twitter" src="images/pngaaa.com-615958.png"></a>
-          </div>            
-        </div>    
-      </div>  
-      <div class="label-color">
-        <p>Copyright &copy 2021. All Rights Reserved</p>
+        <div class="label-color">
+          <p>Copyright &copy 2021. All Rights Reserved</p>
+        </div>
       </div>
-    </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
    

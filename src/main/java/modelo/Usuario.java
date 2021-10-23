@@ -78,4 +78,5 @@ public class Usuario {
 		return "Cedula: " + numeroCedula + "\nNombre: " + nombreCompleto + "\nCorreo personal: "
 				+ correoPersonal+"\nUsuario: "+usuario+"\nContraseña: "+contrasenia;
 	}
+}
 

@@ -41,7 +41,7 @@ primary key(prod_codigo_producto),
 constraint fk_prov_nit foreign key(prov_nit) references proveedores(prov_nit) on delete cascade on update cascade
 );
 create table ventas(
-venta_codigo bigint(20) auto_increment,
+venta_codigo bigint(20) not null auto_increment,
 cli_numero_cedula numeric(15,0) not null,
 usu_numero_cedula numeric(15,0) not null,
 venta_iva double,
@@ -54,7 +54,7 @@ constraint fk_numero_cedula_usuario foreign key (usu_numero_cedula)
 references usuarios(usu_numero_cedula)
 );
 create table detalle_ventas(
-det_venta_codigo bigint(20) auto_increment,
+det_venta_codigo bigint(20) not null auto_increment,
 cantidad_productos int(11),
 prod_codigo_producto bigint(20) not null,
 venta_codigo bigint(20),

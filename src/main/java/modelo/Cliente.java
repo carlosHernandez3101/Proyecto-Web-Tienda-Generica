@@ -67,7 +67,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [numeroCedula=" + numeroCedula + ", nombreCompleto=" + nombreCompleto + ", direccion="
-				+ direccion + ", telefono=" + telefono + ", correoElectronico=" + correoElectronico + "]";
+		return "Cédula: " + numeroCedula + "\nNombre: " + nombreCompleto + "\nDirección: "
+				+ direccion + "\nTelefono: " + telefono + "\nCorreo electrónico: " + correoElectronico ;
 	}	
 }

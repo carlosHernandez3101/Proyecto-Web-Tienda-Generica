@@ -6,7 +6,7 @@ create table usuarios (
    usu_correo_electronico         varchar(50)                    not null,
    primary key (usu_numero_cedula)
 );
-create table cuenta (
+create table cuentas (
    usu_numero_cedula              numeric(15,0)                  not null,
    cue_nombre_usuario             varchar(20)                    not null,
    cue_contrasenia                varchar(50)                    not null,
@@ -14,7 +14,7 @@ create table cuenta (
    constraint fk_numero_cedula_usuario foreign key (usu_numero_cedula)
       references usuarios (usu_numero_cedula) on delete cascade on update cascade 
 );
-create table cliente (
+create table clientes (
 cli_numero_cedula numeric(15,0) not null,
 cli_nombre_completo varchar (150) not null,
 cli_direccion varchar(50) not null,
@@ -33,7 +33,7 @@ primary key(prov_nit)
 create table productos(
 prod_codigo_producto bigint(20) not null,
 prod_nombre  varchar(50) not null,
-prov_nit varchar(50) not null,
+prov_nit  numeric(20,0) not null,
 prod_precio_compra double not null,
 prod_iva_compra double not null,
 prod_precio_venta double not null,

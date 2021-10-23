@@ -28,7 +28,6 @@ public class VentaDAO {
 			ps.setDouble(4, venta.getValor_venta());
 			ps.setDouble(5, venta.getTotal_venta());
 			int result = ps.executeUpdate();
-			rs = ps.getGeneratedKeys();
 			if (result > 0) {
 				cnn.cerrarConexionBD();
 				return true;
@@ -42,10 +41,27 @@ public class VentaDAO {
 		}
 	}
 	
-	public Venta consultarVenta() {
+	public Venta consultarVenta(int numeroCedula) {
+		Venta ventaEncontrada = null;
+		PreparedStatement ps;
+		ResultSet rs;
+		String sql = "SELECT venta_codigo FROM ventas WHERE cli_numero_cedula = " + numeroCedula;
+		try {
+			cnn.establecerConexionBD();
+			ps = cnn.getCnn().prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				int codigoVenta = Integer.parseInt(rs.getString(1));
+				ventaEncontrada = new Venta();
+				ventaEncontrada.setCodigoVenta(codigoVenta);
+			}
+			cnn.cerrarConexionBD();
+			
+		} catch (Exception e) {
+			ventaEncontrada = null;
+		}
 		
-		
-		return null;
+		return ventaEncontrada;
 	}
 
 }

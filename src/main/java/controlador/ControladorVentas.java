@@ -157,20 +157,21 @@ public class ControladorVentas extends HttpServlet {
 				cedula_cliente = (int) clienteEncontrado.getNumeroCedula();
 				cedula_usuario = Integer.parseInt(request.getParameter("consecutivo"));
 				Venta venta = new Venta(cedula_cliente, cedula_usuario, totaliva, totalsiniva, total);
-				//ID = ventadto.getVentaDAO().agregarVenta(venta);
+				boolean ventaAgregada = ventadto.getVentaDAO().agregarVenta(venta);
 
-				if (ID == 0) {
+				if (ventaAgregada == false) {
 					JOptionPane.showMessageDialog(null, "Venta no realizada");
 					response.sendRedirect("ventas.jsp");
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Venta realizada");
+					Venta ventaE = ventadto.getVentaDAO().consultarVenta(cedula_cliente);
 					boolean exitodetalle = false;
-					DetalleVenta detaventa1 = new DetalleVenta(cantidad1, codigoPrimerProducto, ID, total1, res1,
+					DetalleVenta detaventa1 = new DetalleVenta(cantidad1, codigoPrimerProducto, ventaE.getCodigoVenta(), total1, res1,
 							total1 + res1);
-					DetalleVenta detaventa2 = new DetalleVenta(cantidad2, codigoSegundoProducto, ID, total2, res2,
+					DetalleVenta detaventa2 = new DetalleVenta(cantidad2, codigoSegundoProducto, ventaE.getCodigoVenta(), total2, res2,
 							total2 + res2);
-					DetalleVenta detaventa3 = new DetalleVenta(cantidad3, codigoTercerProducto, ID, total3, res3,
+					DetalleVenta detaventa3 = new DetalleVenta(cantidad3, codigoTercerProducto, ventaE.getCodigoVenta(), total3, res3,
 							total3 + res3);
 
 					exitodetalle = detVentadto.getDetalleVentaDAO().registrarDetalleVenta(detaventa1);

@@ -8,7 +8,9 @@ public class Venta {
 	private double Valor_venta;
 	private double Total_venta;
 	
-	
+	public Venta() {
+		// TODO Auto-generated constructor stub
+	}
 	public Venta(int cedula_cliente, int cedula_usuario, double iva_venta, double valor_venta,
 			double total_venta) {
 		this.codigoVenta = 0;

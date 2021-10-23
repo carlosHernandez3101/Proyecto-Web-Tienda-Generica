@@ -153,11 +153,11 @@ public class ControladorVentas extends HttpServlet {
 
 			if (i == 0) {
 
-				int cedula_usuario, cedula_cliente, ID;
+				int cedula_usuario, cedula_cliente, ID = 0;
 				cedula_cliente = (int) clienteEncontrado.getNumeroCedula();
 				cedula_usuario = Integer.parseInt(request.getParameter("consecutivo"));
 				Venta venta = new Venta(cedula_cliente, cedula_usuario, totaliva, totalsiniva, total);
-				ID = ventadto.getVentaDAO().agregarVenta(venta);
+				//ID = ventadto.getVentaDAO().agregarVenta(venta);
 
 				if (ID == 0) {
 					JOptionPane.showMessageDialog(null, "Venta no realizada");

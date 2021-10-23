@@ -30,15 +30,16 @@ prov_telefono numeric(10,0) not null,
 prov_ciudad numeric(20) not null,
 primary key(prov_nit)
 );
-create table productos(
+CREATE TABLE productos(
 prod_codigo_producto bigint(20) not null,
 prod_nombre  varchar(50) not null,
-prov_nit varchar(50) not null,
+prov_nit numeric(20) not null,
 prod_precio_compra double not null,
 prod_iva_compra double not null,
 prod_precio_venta double not null,
-primary key(prod_codigo_producto),
-constraint fk_prov_nit foreign key(prov_nit) references proveedores(prov_nit) on delete cascade on update cascade
+primary key (prod_codigo_producto),
+constraint fk_prov_nit foreign key (prov_nit)
+	references proveedores (prov_nit) on delete cascade on update cascade
 );
 create table ventas(
 venta_codigo bigint(20) not null auto_increment,
@@ -48,9 +49,9 @@ venta_iva double,
 venta_total double,
 venta_valor double,
 primary key(venta_codigo),
-constraint fk_numero_cedula_cliente foreign key (cli_numero_cedula) 
-references clientes(cli_numero_cedula),
-constraint fk_numero_cedula_usuario foreign key (usu_numero_cedula) 
+constraint fk_cli_numero_cedula foreign key (cli_numero_cedula) 
+references cliente(cli_numero_cedula),
+constraint fk_usu_numero_cedula foreign key (usu_numero_cedula) 
 references usuarios(usu_numero_cedula)
 );
 create table detalle_ventas(

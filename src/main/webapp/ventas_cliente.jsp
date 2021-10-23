@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="modelo.Cliente"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Reportes"%>
+<%@page import="modelo.ReportesDTO"%>
+<%@page import="javax.swing.JOptionPane"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-grid.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Project</title>
@@ -76,6 +81,16 @@
       </nav>   
         
     </header>
+    
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<%
+ReportesDTO rep = new ReportesDTO();
+ArrayList<Reportes> listaventas = rep.getReportesDao().listadoventas();
+if(listaventas.isEmpty()){
+	JOptionPane.showMessageDialog(null, "No se han encontrado ventas realizadas por los clientes");
+response.sendRedirect("reportes.jsp");
+}
+%>   
     <div class="login" style="width: 57rem;margin-left: autp !important;">
         <h2 class="label-color">Total de Ventas por Cliente</h2>
         <table class="default">
@@ -87,21 +102,24 @@
                 </tr>
             </thead>
              <tbody class="filas">
-                <tr>          
-                    <td></td>          
-                    <td></td>          
-                    <td></td>                              
-                </tr>
-                <tr>          
-                    <td></td>          
-                    <td></td>          
-                    <td></td>                             
-                </tr>
-                <tr>          
-                    <td></td>          
-                    <td></td>          
-                    <td></td>                              
-                </tr>
+               <% 
+							
+							for (Reportes ven: listaventas){
+								
+						
+								%>
+								<tr>
+								<td style="font-size: 15px"> <%=ven.getCedula_cliente() %></td>
+								<td style="font-size: 15px"><%=ven.getNombre_cliente() %></td>
+								<td style="font-size: 15px"><%=ven.getVentas() %></td>
+								
+								
+								</tr>
+								
+								
+								
+							<%} %>
+							
              </tbody>                     
         </table>
         <div class="p-3 mb-1 ms-2">

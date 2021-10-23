@@ -1,3 +1,5 @@
+<%@page import="modelo.Usuario"%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -12,6 +14,14 @@
     <title>Project</title>
 </head>
 <body>
+<%
+HttpSession varsesion=request.getSession();
+Usuario us=(Usuario)varsesion.getAttribute("usuario");
+ if (us==null){
+	JOptionPane.showMessageDialog(null, "Usted no se ha logueado");
+	response.sendRedirect("index.jsp");
+	}
+%>
     <header class="d-flex">
 
       <div>
@@ -77,14 +87,14 @@
     </header>
     <div class="login" style="width: 57rem;margin-left: auto !important;">
         <h2 class="label-color">Ventas</h2>
-        <form action="">
+        <form action="ControladorVentas" method="post">
             <div class="form">
                 <div class="grid-33 container-95">
                     <div class="p-3 mb-1 d-flex">
                         <div class="">
                             <label class="align label-color" for="cedula">
                                 Cédula
-                                <input  type="text" name="cedula" id="cedula" required/>
+                                <input  type="text" name="cedula" id="cedula" />
                             </label>                   
                         </div>
                         <div>
@@ -95,7 +105,7 @@
                         <div class="">
                             <label class="align label-color" for="cliente">
                                 Cliente
-                                <input  type="text" name="cliente" id="cliente" required/>
+                                <input  type="text" name="cliente" id="cliente" value="${cliente.getNombreCompleto()}" />
                             </label>                   
                         </div>
                     </div>
@@ -103,7 +113,7 @@
                         <div class="">
                             <label class="align label-color" for="consecutivo">
                                 Consecutivo
-                                <input  type="text" name="consecutivo" id="consecutivo" style="width: 180px;" required/>
+                                <input  type="text" name="consecutivo" id="consecutivo" style="width: 180px;" value="${usuario.getNumeroCedula()}" />
                             </label>                   
                         </div>
                     </div>
@@ -111,24 +121,25 @@
                         <div class="">
                             <label class="align label-color" for="codP">
                                 Cod. Producto
-                                <input  type="text" name="codP" id="codP" required/>
+                                <input  type="text" name="codP" id="codP" />
                             </label>                   
                         </div>
                         <div>
-                            <input class="button-login m-2 p-1" style="margin-top: 1.2rem !important;" type="submit"  name="btncon"  value="Consultar">
+                            <input class="button-login m-2 p-1" style="margin-top: 1.2rem !important;" type="submit"  name="btnconp"  value="Consultar">
                         </div>
                     </div>
                     <div class="p-3 mb-1 d-flex ms-4">
                         <div class="">
                             <label class="align label-color" for="nomP">
                                 Nombre Producto
-                                <input  type="text" name="nomP" id="nomP" required/>
+                                <input  type="text" name="nomP" id="nomP" value="${producto1.getNombre_producto()}"/>
                             </label>                   
                         </div>
                         <div>
                             <label class="align label-color" for="cantidad">
                                 Cantidad
-                                <input  type="text" name="cantidad" id="cantidad" style="width: 30px; margin-left: 25px;"required/>
+                                <input  type="text" name="cantidad1" id="cantidad1" style="width: 30px; margin-left: 25px;"/>
+                                
                             </label>
                         </div>
                     </div>
@@ -136,57 +147,58 @@
                         <div class="">
                             <label class="align label-color" for="vlrT">
                                 Vlr. Total
-                                <input  type="text" name="vlrT" id="vlrT" style="width: 180px;"/>
-                            </label>                   
+                                <input type="text" name="vlrT" id="vlrT"
+								style="width: 180px;" value="${producto1.getPrecio_venta()}" />
+							</label>                   
                         </div>                        
                     </div>
                     <div class="p-3 mb-1 d-flex">
                         <div class="mt-2">     
-                            <input  type="text" name="codP1" id="codP1" required/>
+                            <input  type="text" name="codP1" id="codP1"/>
                         </div>
                         <div>
-                            <input class="button-login m-2 p-1" type="submit"  name="btncon"  value="Consultar">
+                            <input class="button-login m-2 p-1" type="submit"  name="btnconp2"  value="Consultar">
                         </div>
                     </div>
                     <div class="p-3 mb-1 d-flex ms-4">
                         <div class="mt-2">     
-                            <input  type="text" name="nomP1" id="nomP1" required/>
+                            <input  type="text" name="nomP1" id="nomP1" value="${producto2.getNombre_producto()}" />
                         </div>                                                    
                         <div class="mt-2">
-                            <input  type="text" name="cantidad1" id="cantidad1" style="width: 30px; margin-left: 25px;"required/>
+                            <input  type="text" name="cantidad2" id="cantidad2" style="width: 30px; margin-left: 25px;"/>
                         </div>                       
                     </div>
                     <div class="p-3 mb-1 d-flex" style="margin-left: 2rem;">
                         <div class="mt-2">     
-                            <input  type="text" name="vlrT1" id="vlrT1" required/>
+                            <input  type="text" name="vlrT1" id="vlrT1" value="${producto2.getPrecio_venta()}" />
                         </div>                                             
                     </div>
                     <div class="p-3 mb-1 d-flex">
                         <div class="mt-2">     
-                            <input  type="text" name="codP2" id="codP2" required/>
+                            <input  type="text" name="codP2" id="codP2" />
                         </div>
                         <div>
-                            <input class="button-login m-2 p-1" type="submit"  name="btncon"  value="Consultar">
+                            <input class="button-login m-2 p-1" type="submit"  name="btnconp3"  value="Consultar">
                         </div>
                     </div>
                     <div class="p-3 mb-1 d-flex ms-4">
                         <div class="mt-2">     
-                            <input  type="text" name="nomP2" id="nomP2" required/>
+                            <input  type="text" name="nomP2" id="nomP2" value="${producto3.getNombre_producto()}" />
                         </div>                                                    
                         <div class="mt-2">
-                            <input  type="text" name="cantidad2" id="cantidad2" style="width: 30px; margin-left: 25px;"required/>
+                            <input  type="text" name="cantidad3" id="cantidad3" style="width: 30px; margin-left: 25px;"/>
                         </div>                       
                     </div>
                     <div class="p-3 mb-1 d-flex " style="margin-left: 2rem;">
                         <div class="mt-2">     
-                            <input  type="text" name="vlrT2" id="vlrT2" required/>
+                            <input  type="text" name="vlrT2" id="vlrT2" value="${producto3.getPrecio_venta()}"/>
                         </div>                                             
                     </div>
                     <div class="p-3 mb-1 d-flex">
                         <div class="">
                             <label class="align label-color" for="totalV">
                                 Total Venta
-                                <input  type="text" name="totalV" id="totalV" required/>
+                                <input  type="text" name="totalV" id="totalV" />
                             </label>                   
                         </div>                       
                     </div>
@@ -194,7 +206,7 @@
                         <div class="">
                             <label class="align label-color" for="totalI">
                                Total Iva
-                                <input  type="text" name="totalI" id="totalI" required/>
+                                <input  type="text" name="totalI" id="totalI" />
                             </label>                   
                         </div>                        
                     </div>

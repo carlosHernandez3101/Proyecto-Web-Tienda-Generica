@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import modelo.Usuario;
@@ -41,6 +42,7 @@ public class ControladorGestionUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession sesion = request.getSession();
 		String usuario, contrasenia;
 		UsuarioDTO userDTO = new UsuarioDTO();
 		// validacion modulo login
@@ -49,7 +51,8 @@ public class ControladorGestionUsuario extends HttpServlet {
 			contrasenia = request.getParameter("contrasenia");
 			Usuario user = userDTO.getUsuarioDao().existeCuentaUsuario(usuario, contrasenia);
 			if (user != null) {
-				response.sendRedirect("navUser.jsp");
+				sesion.setAttribute("usuario", user);
+				request.getRequestDispatcher("navUser.jsp").forward(request, response);
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario no se encuentra creado");
 				response.sendRedirect("index.jsp");
@@ -93,12 +96,13 @@ public class ControladorGestionUsuario extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "El usuario ha sido eliminado");
 				response.sendRedirect("usuarios_eliminar.jsp");
 			}
-		} else if(request.getParameter("btnact") != null) {
+		} else if (request.getParameter("btnact") != null) {
 			long numeroCedula = Long.parseLong(request.getParameter("cedula"));
 			String nombreCompleto = request.getParameter("nombre");
 			String correoElectronico = request.getParameter("correo");
-			boolean userModificado = userDTO.getUsuarioDao().modificarUsuario(numeroCedula, nombreCompleto, correoElectronico);
-			if(userModificado) {
+			boolean userModificado = userDTO.getUsuarioDao().modificarUsuario(numeroCedula, nombreCompleto,
+					correoElectronico);
+			if (userModificado) {
 				JOptionPane.showMessageDialog(null, "El usuario ha sido modificado");
 				response.sendRedirect("usuarios_actualizar.jsp");
 			} else {
